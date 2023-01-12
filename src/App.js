@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect,useState} from "react";
+import Message from "./components/Message";
 
-function App() {
+const App = () => {
+  console.log('start')
+
+  const fontStyle = {
+    color: 'blue',
+  }
+
+  const [num, setNum] = useState(0);
+
+  const onClickCountUp = () => {
+    setNum(num + 1)
+  }
+  const onClickCountDown = () => {
+    setNum(num - 1)
+  }
+
+
+  const [flag, setFlag] = useState(true)
+
+  const onClickSwitch = () => {
+    setFlag(!flag)
+  }
+
+  useEffect(() => {
+  if (num > 0) {
+    if (num % 3 === 0) {
+      flag || setFlag(true)
+    } else {
+      flag && setFlag(false)
+    }
+  }
+  }, [num]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <h1 style ={{color: 'red', fontSize: '18px'}}>Hello</h1>
+      <p style={fontStyle}>HelloWorld</p>
+      <Message color="black" message="元気です1"/>
+      <Message color="pink" message2="元気です2"/>
+      <Message color="green">
+        元気です3
+      </Message>
+      <button onClick={onClickCountUp}>カウントアップ</button>
+      <button onClick={onClickCountDown}>カウントダウン</button>
+      <p>{num}</p>
+      <button onClick={onClickSwitch}>on/off</button>
+      {flag && <p>Σ੧(❛□❛✿)</p>}
+    </>
+  )
 }
 
-export default App;
+export default App

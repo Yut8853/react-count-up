@@ -11,10 +11,12 @@ const App = () => {
   const [num, setNum] = useState(0);
 
   const onClickCountUp = () => {
-    setNum(num + 1)
+    const clickCount = num + 1
+    setNum(clickCount)
   }
   const onClickCountDown = () => {
-    setNum(num - 1)
+    const clickCountDown = num - 1
+    setNum(clickCountDown)
   }
 
 
